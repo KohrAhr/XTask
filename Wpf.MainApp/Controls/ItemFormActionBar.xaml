@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Wpf.GridView.Controls.ItemFormActionBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Wpf.GridView.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="400">
+    <Grid x:Name="gdTop">
+        <WrapPanel Style="{StaticResource ResourceKey=TopWrapPanel}">
+            <Button IsDefault="True" Tag="0" Command="{Binding Path=NewCommand}" Style="{StaticResource ResourceKey=RegularButton}" HorizontalAlignment="Left" Margin="10,10,0,0" Click="btnAdd_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Style="{StaticResource ResourceKey=AddItemImage}"/>
+                    <TextBlock VerticalAlignment="Center" Text="{StaticResource ResourceKey=resAddItem}" />
+                </StackPanel>
+            </Button>
+            <Button IsDefault="True" Tag="1" Command="{Binding Path=UpdateCommand}" Style="{StaticResource ResourceKey=RegularButton}" HorizontalAlignment="Left" Margin="10,10,0,0" Click="btnUpdate_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Style="{StaticResource ResourceKey=ModifyItemImage}"/>
+                    <TextBlock VerticalAlignment="Center" Text="{StaticResource ResourceKey=resModify}" />
+                </StackPanel>
+            </Button>
+            <Button Tag="2" IsCancel="True" Style="{StaticResource ResourceKey=RegularButton}" HorizontalAlignment="Left" Margin="10,10,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <Image Style="{StaticResource ResourceKey=CancelItemImage}"/>
+                    <TextBlock VerticalAlignment="Center" Text="{StaticResource ResourceKey=resCancel}" />
+                </StackPanel>
+            </Button>
+        </WrapPanel>            
+    </Grid>
+</UserControl>
