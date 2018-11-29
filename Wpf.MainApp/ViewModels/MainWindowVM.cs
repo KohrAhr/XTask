@@ -40,42 +40,42 @@ namespace Wpf.GridView.ViewModels
 
             // Should be added
             TestItems.Add(
-                new ItemType { FirstName = "X1", Surname = "S1", CardNumber = "12345", Amount = 25.67 }
+                new ItemTypeExtended { FirstName = "X1", Surname = "S1", CardNumber = "12345", Amount = 25.67 }
             );
 
             // Shoudn't be added -- card number contain not only digits
             TestItems.Add(
-                new ItemType { FirstName = "X2", Surname = "S2", CardNumber = "12345 ", Amount = 12.1 }
+                new ItemTypeExtended { FirstName = "X2", Surname = "S2", CardNumber = "12345 ", Amount = 12.1 }
             );
 
             // Shoudn't be added -- card number contain not only digits
             TestItems.Add(
-                new ItemType { FirstName = "X3", Surname = "S3", CardNumber = "12345B", Amount = 13 }
+                new ItemTypeExtended { FirstName = "X3", Surname = "S3", CardNumber = "12345B", Amount = 13 }
             );
 
             // Shoudn't be added -- card number already exist
             TestItems.Add(
-                new ItemType { FirstName = "X4", Surname = "S4", CardNumber = "12345", Amount = 0.03 }
+                new ItemTypeExtended { FirstName = "X4", Surname = "S4", CardNumber = "12345", Amount = 0.03 }
             );
 
             // Should be added
             TestItems.Add(
-                new ItemType { FirstName = "X5", Surname = "S5", CardNumber = "123456", Amount = 0.03 }
+                new ItemTypeExtended { FirstName = "X5", Surname = "S5", CardNumber = "123456", Amount = 0.03 }
             );
 
             // Should be added
             TestItems.Add(
-                new ItemType { FirstName = "X5", Surname = "S5T1", CardNumber = "1234567", Amount = 0.02 }
+                new ItemTypeExtended { FirstName = "X5", Surname = "S5T1", CardNumber = "1234567", Amount = 0.02 }
             );
 
             // Should be added
             TestItems.Add(
-                new ItemType { FirstName = "X5T1", Surname = "S5", CardNumber = "12345678", Amount = 0.01 }
+                new ItemTypeExtended { FirstName = "X5T1", Surname = "S5", CardNumber = "12345678", Amount = 0.01 }
             );
 
             // Shoudn't be added -- full name already exist
             TestItems.Add(
-                new ItemType { FirstName = "X5T1", Surname = "S5", CardNumber = "123456789", Amount = 0 }
+                new ItemTypeExtended { FirstName = "X5T1", Surname = "S5", CardNumber = "123456789", Amount = 0 }
             );
         }
 
@@ -92,9 +92,13 @@ namespace Wpf.GridView.ViewModels
             NewItemWindow newItemWindow = WindowsUI.ShowWindowDialogEx<NewItemWindow>();
             if (newItemWindow.DialogResult == true)
             {
+                ItemTypeExtended newItem = ItemTypeExtended.GetItemTypeAsItemClassExtended(
+                    ((NewItemVM)(newItemWindow.DataContext)).Model.NewItem
+                );
+
                 // Update item
                 TestItems.Add(
-                    ((NewItemVM)(newItemWindow.DataContext)).Model.NewItem
+                    newItem
                 );
             }
         }
@@ -123,7 +127,7 @@ namespace Wpf.GridView.ViewModels
                 return;
             }
 
-            TestItems.Remove(selectedItem);
+            TestItems.Remove((ItemTypeExtended)selectedItem);
         }
 
         private bool DeleteItemCommandEnabled(Object o)
@@ -142,7 +146,7 @@ namespace Wpf.GridView.ViewModels
 
         private void ModifyItemCommandProc(Object selectedItems)
         {
-            ItemType selectedItem = (ItemType)((ObservableCollection<object>)selectedItems).FirstOrDefault();
+            ItemTypeExtended selectedItem = (ItemTypeExtended)((ObservableCollection<object>)selectedItems).FirstOrDefault();
             if (selectedItem == null)
             {
                 return;
@@ -152,11 +156,12 @@ namespace Wpf.GridView.ViewModels
             EditItemWindow editItemWindow = WindowsUI.ShowWindowDialogEx<EditItemWindow>(selectedItem);
             if (editItemWindow.DialogResult == true)
             {
-                // Update item
-                TestItems.Update(
-                    ((EditItemVM)(editItemWindow.DataContext)).Model.OriginalItem,
+                ItemTypeExtended currentItem = ItemTypeExtended.GetItemTypeAsItemClassExtended(
                     ((EditItemVM)(editItemWindow.DataContext)).Model.CurrentItem
                 );
+
+                // Update item
+                TestItems.Update(selectedItem, currentItem);
             }
         }
 
