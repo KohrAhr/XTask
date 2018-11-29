@@ -9,12 +9,12 @@ namespace Wpf.GridView.Core
             get; set;
         }
 
-        public static string RemoteEncyptionServer
+        public static string RemoteEncryptionServer
         {
             get; set;
         }
 
-        public enum RemoteEncyptionServerTypes
+        public enum RemoteEncryptionServerTypes
         {
             /// <summary>
             ///     Start :)
@@ -32,7 +32,7 @@ namespace Wpf.GridView.Core
             rtHttpPost
         };
 
-        public static RemoteEncyptionServerTypes RemoteEncyptionServerType
+        public static RemoteEncryptionServerTypes RemoteEncryptionServerType
         {
             get; set;
         }
@@ -42,8 +42,8 @@ namespace Wpf.GridView.Core
         /// </summary>
         public static void Init()
         {
-            RemoteEncyptionServer = ConfigurationManager.AppSettings["RemoteEncyptionServer"].ToString();
-            RemoteEncyptionServerType = RemoteEncyptionServerTypes.rtBuildInLocalMustBeRemovedBeforeRelease;
+            RemoteEncryptionServer = ConfigurationManager.AppSettings["RemoteEncryptionServer"].ToString();
+            RemoteEncryptionServerType = RemoteEncryptionServerTypes.rtBuildInLocalMustBeRemovedBeforeRelease;
         }
 
         /// <summary>

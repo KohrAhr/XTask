@@ -19,14 +19,14 @@ namespace Wpf.GridView.Core
         {
             string result;
 
-            if (CoreData.RemoteEncyptionServerType == CoreData.RemoteEncyptionServerTypes.rtBuildInLocalMustBeRemovedBeforeRelease)
+            if (CoreData.RemoteEncryptionServerType == CoreData.RemoteEncryptionServerTypes.rtBuildInLocalMustBeRemovedBeforeRelease)
             {
                 byte[] resultAsBytes = SecurityFunctions.TripleDESEncryptFramework(data, CoreData.EncryptionKey);
 
                 result = StringsFunctions.BytesAsHexString(resultAsBytes, " ");
             }
             else
-            if (CoreData.RemoteEncyptionServerType == CoreData.RemoteEncyptionServerTypes.rtHttpGet)
+            if (CoreData.RemoteEncryptionServerType == CoreData.RemoteEncryptionServerTypes.rtHttpGet)
             {
                 throw new NotImplementedException(nameof(GetEncryptedData));
                 //result = string.Empty;
@@ -40,7 +40,7 @@ namespace Wpf.GridView.Core
                 //}
             }
             else
-            if (CoreData.RemoteEncyptionServerType == CoreData.RemoteEncyptionServerTypes.rtHttpPost)
+            if (CoreData.RemoteEncryptionServerType == CoreData.RemoteEncryptionServerTypes.rtHttpPost)
             {
                 result = string.Empty;
                 try
