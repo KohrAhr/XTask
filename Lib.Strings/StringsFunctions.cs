@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,6 +9,37 @@ namespace Lib.Strings
 {
     public static class StringsFunctions
     {
+        private static SecureString MakeReadOnly(this SecureString secureString)
+        {
+            secureString.MakeReadOnly();
+            return secureString;
+        }
+
+        public static SecureString ToSecureString(this string source)
+        {
+            if (String.IsNullOrEmpty(source))
+            {
+                return null;
+            }
+
+            SecureString result = new SecureString();
+
+            result = source.Aggregate(
+                new SecureString(), 
+                (secureString, charToAppend) =>
+                {
+                    SecureString aggregateResult = secureString;
+                    aggregateResult.AppendChar(charToAppend);
+                    return aggregateResult;
+                }, 
+                MakeReadOnly
+            );
+
+            result.MakeReadOnly();
+
+            return result;
+        }
+
         /// <summary>
         ///     Find resource by name and return value
         /// </summary>

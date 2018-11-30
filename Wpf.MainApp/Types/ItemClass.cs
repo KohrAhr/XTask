@@ -31,7 +31,7 @@ namespace Wpf.GridView.Types
         {
             get => GetValue(() => CardNumber);
             set => SetValue(() => CardNumber, value);
-                }
+        }
 
         public double Amount
         {
