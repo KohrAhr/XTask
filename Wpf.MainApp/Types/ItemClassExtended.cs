@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using Wpf.GridView.Core;
@@ -61,6 +62,9 @@ namespace Wpf.GridView.Types
             }
         }
 
+        /// <summary>
+        ///     Red background
+        /// </summary>
         public bool AdHock_Item1
         {
             get
@@ -75,6 +79,9 @@ namespace Wpf.GridView.Types
             set { SetValue(() => AdHock_Item1, value); }
         }
 
+        /// <summary>
+        ///     Yellow background
+        /// </summary>
         public bool AdHock_Item2
         {
             get
