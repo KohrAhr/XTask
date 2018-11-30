@@ -35,8 +35,6 @@ namespace Lib.Strings
                 MakeReadOnly
             );
 
-            result.MakeReadOnly();
-
             return result;
         }
 
