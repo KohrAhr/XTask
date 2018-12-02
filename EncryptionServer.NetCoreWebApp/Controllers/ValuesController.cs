@@ -20,7 +20,7 @@ namespace EncryptionServer.NetCoreWebApp.Controllers
         public ActionResult<string> Post([FromForm] string value)
         {
             // Size: should be 24*8 = 192 bites
-            string key = "123456789012345678901234";
+            string key = CoreData.SecurityKey;
 
             byte[] resultAsBytes = SecurityFunctions.TripleDESEncryptFramework(value, key);
 

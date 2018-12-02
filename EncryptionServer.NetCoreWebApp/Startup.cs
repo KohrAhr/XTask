@@ -18,6 +18,7 @@ namespace EncryptionServer.NetCoreWebApp
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            CoreData.SecurityKey = Configuration["SecurityKey"];
         }
 
         public IConfiguration Configuration { get; }
