@@ -22,7 +22,7 @@ namespace Wpf.GridView.Core
 
             // Key file
             item = commandLineParameters.Where(x => x.Key == "keyfile").FirstOrDefault();
-            if (item.Key != null && item.Value != null)
+            if (!String.IsNullOrEmpty(item.Key) && !String.IsNullOrEmpty(item.Value))
             {
                 string fileName = item.Value;
 

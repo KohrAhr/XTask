@@ -88,6 +88,7 @@
     <Compile Include="Models\MainWindowModel.cs" />
     <Compile Include="Models\NewItemModel.cs" />
     <Compile Include="Types\ItemClass.cs" />
+    <Compile Include="Types\ItemClassExtended.cs" />
     <Compile Include="Types\ItemsClass.cs" />
     <Compile Include="ViewModels\Base\BaseVM.cs" />
     <Compile Include="ViewModels\EditItemVM.cs" />

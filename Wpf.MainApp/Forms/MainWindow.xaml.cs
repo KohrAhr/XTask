@@ -131,10 +131,5 @@ namespace Wpf.GridView.Forms
         {
             ((MainWindowVM)DataContext).DeleteItemCommand.Execute(dgMain.SelectedItems);
         }
-
-        private void dgMain_Loaded(object sender, RoutedEventArgs e)
-        {
-            dgMain.Visibility = Visibility.Visible;
-        }
     }
 }

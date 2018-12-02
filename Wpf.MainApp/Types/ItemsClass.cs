@@ -6,13 +6,13 @@ using Lib.Strings;
 
 namespace Wpf.GridView.Types
 {
-    public class ItemsType : ObservableCollection<ItemType>
+    public class ItemsType : ObservableCollection<ItemTypeExtended>
     {
-        private ObservableCollection<ItemType> items;
+        private ObservableCollection<ItemTypeExtended> items;
 
         public ItemsType()
         {
-            items = new ObservableCollection<ItemType>();
+            items = new ObservableCollection<ItemTypeExtended>();
         }
 
         public new IEnumerable Items
@@ -21,12 +21,12 @@ namespace Wpf.GridView.Types
         }
 
         #region 'CRUD'
-        public new void Remove(ItemType item)
+        public new void Remove(ItemTypeExtended item)
         {
             items.Remove(item);
         }
 
-        public void Update(ItemType existingItem, ItemType newItem)
+        public void Update(ItemTypeExtended existingItem, ItemTypeExtended newItem)
         {
             if (!IsCreditCardValid(newItem, existingItem))
             {
@@ -40,7 +40,7 @@ namespace Wpf.GridView.Types
             }
 
             // Find
-            ItemType itemType = items.First(x => x == existingItem);
+            ItemTypeExtended itemType = items.First(x => x == existingItem);
 
             // Update
             if (itemType != null)
@@ -52,7 +52,7 @@ namespace Wpf.GridView.Types
             }
         }
 
-        public new void Add(ItemType item)
+        public new void Add(ItemTypeExtended item)
         {
             if (item == null)
             {
@@ -99,7 +99,7 @@ namespace Wpf.GridView.Types
         ///     <para>Если не указан, то скорее всего проверка перед добавлением новой записи</para>
         /// </param>
         /// <returns></returns>
-        private bool IsCreditCardValid(ItemType item, ItemType existingItem = null)
+        private bool IsCreditCardValid(ItemTypeExtended item, ItemTypeExtended existingItem = null)
         {
             // Card number must contain only numbers
             if (!StringsFunctions.StringContainOnlyDigits(item.CardNumber))
@@ -137,7 +137,7 @@ namespace Wpf.GridView.Types
         ///     <para>Если не указан, то скорее всего проверка перед добавлением новой записи</para>
         /// </param>
         /// <returns></returns>
-        private bool IsItemDataUnique(ItemType item, ItemType exceptItem = null)
+        private bool IsItemDataUnique(ItemTypeExtended item, ItemTypeExtended exceptItem = null)
         {
             bool result = false;
 
