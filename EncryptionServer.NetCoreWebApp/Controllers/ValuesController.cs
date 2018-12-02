@@ -15,7 +15,7 @@ namespace EncryptionServer.NetCoreWebApp.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // POST api/TestItems
+        // POST api/TripleDesEncryption
         [HttpPost]
         public ActionResult<string> Post([FromForm] string value)
         {

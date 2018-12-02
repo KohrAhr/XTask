@@ -19,6 +19,11 @@ namespace EncryptionServer.NetCoreWebApp
         {
             Configuration = configuration;
             CoreData.SecurityKey = Configuration["SecurityKey"];
+
+            if (String.IsNullOrEmpty(CoreData.SecurityKey))
+            {
+                throw new ArgumentNullException("SecurityKey");
+            }
         }
 
         public IConfiguration Configuration { get; }
