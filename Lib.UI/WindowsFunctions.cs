@@ -23,8 +23,10 @@ namespace Lib.UI
         /// </typeparam>
         public static void ShowWindow<T>() where T : Window
         {
+            Window parentWindow = GetTopWindow();
+
             T dlg = (T)Activator.CreateInstance(typeof(T), new object[] { });
-            dlg.Owner = GetTopWindow(); 
+            dlg.Owner = parentWindow; 
             dlg.Show();
         }
 
@@ -136,6 +138,29 @@ namespace Lib.UI
 
             // Get window we need
             return realWindowCollection.Count() > 0 ? realWindowCollection.Last() : null;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static Window FindWindow<T>()
+        {
+            Window result = null;
+
+            WindowCollection windowCollection = Application.Current.Windows;
+            List<Window> realWindowCollection = new List<Window>();
+
+            foreach (Window window in windowCollection)
+            {
+                if (window.GetType() == typeof(T))
+                {
+                    result = window;
+                    break;
+                }
+            }
+
+            return result;
         }
     }
 }
