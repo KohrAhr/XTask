@@ -1,0 +1,134 @@
+﻿using WpfSystem = System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Security;
+using Microsoft.Win32;
+
+namespace Lib.System
+{
+    public class RegistryFunctions
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="valueName"></param>
+        /// <param name="registry"></param>
+        /// <returns>
+        /// </returns>
+        public string GetRegKeyValue(string path, string valueName, RegistryValueKind valueKind, RegistryKey registry = null)
+        {
+            string result = "";
+            try
+            {
+                RegistryKey registryKey = null;
+
+                if (registry == null)
+                {
+                    registryKey = Registry.LocalMachine;
+                }
+
+                using (RegistryKey key = registryKey.OpenSubKey(path))
+                {
+                    if (key != null)
+                    {
+                        RegistryValueKind registryValueKind = key.GetValueKind(valueName);
+
+                        if (registryValueKind == valueKind)
+                        {
+                            WpfSystem.Object o = key.GetValue(valueName);
+                            if (o != null)
+                            {
+                                if (o.GetType().BaseType == typeof(WpfSystem.Array))
+                                {
+                                    result = WpfSystem.String.Join(WpfSystem.Environment.NewLine, (string[])o);
+                                }
+                                else
+                                {
+                                    result = o.ToString();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (WpfSystem.Exception)
+            {
+                result = null;
+            }
+            return result;
+        }
+
+        public bool CanSetRegKeyValue(string path, string valueName, RegistryKey registry = null)
+        {
+            bool result = true;
+
+            try
+            {
+                RegistryKey registryKey = null;
+
+                if (registry == null)
+                {
+                    registryKey = Registry.LocalMachine;
+                }
+
+                using (RegistryKey key = registryKey.OpenSubKey(path, true))
+                {
+                    result = key != null;
+                }
+            }
+            catch (SecurityException)
+            {
+                result = false;
+            }
+            return result;
+        }
+
+        /// <summary>
+        ///     
+        /// </summary>
+        /// <param name="path">
+        ///     Must exist!
+        /// </param>
+        /// <param name="valueName"></param>
+        /// <param name="value"></param>
+        /// <param name="valueKind"></param>
+        /// <param name="registry"></param>
+        /// <returns></returns>
+        public bool SetRegKeyValue(string path, string valueName, object value, RegistryValueKind valueKind, RegistryKey registry = null)
+        {
+            bool result = true;
+
+            try
+            {
+                RegistryKey registryKey = null;
+
+                if (registry == null)
+                {
+                    registryKey = Registry.LocalMachine;
+                }
+
+                using (RegistryKey key = registryKey.OpenSubKey(path, true))
+                {
+                    if (key != null)
+                    {
+                        //RegistryValueKind registryValueKind = key.GetValueKind(valueName);
+
+                        //if (registryValueKind == valueKind)
+                        //{
+                        key.SetValue(valueName, value, valueKind);
+//                        }
+                    }
+                }
+            }
+            catch (SecurityException)
+            {
+                result = false;
+            }
+
+            return result;
+        }
+    }
+}
