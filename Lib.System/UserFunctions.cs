@@ -214,7 +214,9 @@ namespace Lib.System
                                       principal.Sid.IsWellKnown(WellKnownSidType.BuiltinAdministratorsSid) ||
                                       principal.Sid.IsWellKnown(WellKnownSidType.AccountDomainAdminsSid) ||
                                       principal.Sid.IsWellKnown(WellKnownSidType.AccountAdministratorSid) ||
-                                      principal.Sid.IsWellKnown(WellKnownSidType.AccountEnterpriseAdminsSid));
+                                      principal.Sid.IsWellKnown(WellKnownSidType.AccountEnterpriseAdminsSid) ||
+                                      principal.Sid.IsWellKnown(WellKnownSidType.BuiltinSystemOperatorsSid)
+                                      );
             }
             return false;
         }
