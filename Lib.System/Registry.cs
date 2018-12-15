@@ -79,10 +79,15 @@ namespace Lib.System
                     result = key != null;
                 }
             }
+            catch (WpfSystem.NullReferenceException)
+            {
+                result = false;
+            }
             catch (SecurityException)
             {
                 result = false;
             }
+
             return result;
         }
 
