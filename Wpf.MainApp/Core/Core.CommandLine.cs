@@ -20,18 +20,6 @@ namespace Wpf.GridView.Core
             //
             commandLineParameters = CommandLineFunctions.GetCommandLineParameters(startupEventArgs);
 
-            // Key file
-            item = commandLineParameters.Where(x => x.Key == "keyfile").FirstOrDefault();
-            if (!String.IsNullOrEmpty(item.Key) && !String.IsNullOrEmpty(item.Value))
-            {
-                string fileName = item.Value;
-
-                if (File.Exists(fileName))
-                {
-                    CoreData.EncryptionKey = File.ReadAllText(fileName);
-                }
-            }
-
             // Locale
             item = commandLineParameters.Where(x => x.Key == "locale").FirstOrDefault();
             if (item.Key != null && item.Value != null)

@@ -42,6 +42,8 @@ namespace Wpf.GridView.Core
         /// </summary>
         public static void Init()
         {
+
+            EncryptionKey = ConfigurationManager.AppSettings["SecurityKey"].ToString();
             RemoteEncryptionServer = ConfigurationManager.AppSettings["RemoteEncryptionServer"].ToString();
             RemoteEncryptionServerType = RemoteEncryptionServerTypes.rtBuildInLocalMustBeRemovedBeforeRelease;
         }
