@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EncryptionServer.NetCoreWebApp.Controllers
 {
-    [Route("api/TripleDesEncryption")]
+    [Route("api/TripleDesEncryptionAsText")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
