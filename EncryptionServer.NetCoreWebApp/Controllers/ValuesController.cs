@@ -11,18 +11,30 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EncryptionServer.NetCoreWebApp.Controllers
 {
-    [Route("api/TripleDesEncryptionAsText")]
+    [Route("api/TripleDesEncryption")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        // GET api/TripleDesEncryption
+        [HttpGet]
+        public ActionResult<string> Get()
+        {
+            return "SYSTEM IS READY";
+        }
+
         // POST api/TripleDesEncryption
         [HttpPost]
         public ActionResult<string> Post([FromForm] string value)
         {
             // Size: should be 24*8 = 192 bites
             string key = CoreData.SecurityKey;
+            
+            byte[] resultAsBytes = null;
 
-            byte[] resultAsBytes = SecurityFunctions.TripleDESEncryptFramework(value, key);
+            if (!String.IsNullOrEmpty(value))
+            {
+                resultAsBytes = SecurityFunctions.TripleDESEncryptFramework(value, key);
+            }
 
             return StringsFunctions.BytesAsHexString(resultAsBytes);
         }

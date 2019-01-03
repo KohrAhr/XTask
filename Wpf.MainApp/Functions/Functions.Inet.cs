@@ -45,13 +45,12 @@ namespace Wpf.GridView.Functions
             string result = string.Empty;
             using (HttpClient client = new HttpClient())
             {
-                var content = new FormUrlEncodedContent(Data);
+                FormUrlEncodedContent content = new FormUrlEncodedContent(Data);
 
-                var response = await client.PostAsync(Url, content);
-
-                var responseString = await response.Content.ReadAsStringAsync();
-
-                result = await client.GetStringAsync(Url);
+                using (HttpResponseMessage response = await client.PostAsync(Url, content))
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                }
             }
 
             return result;

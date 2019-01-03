@@ -44,40 +44,40 @@ namespace Wpf.GridView.ViewModels
                 new ItemTypeExtended { FirstName = "X1", Surname = "S1", CardNumber = "12345", Amount = 25.67 }
             );
 
-            // Shoudn't be added -- card number contain not only digits
-            TestItems.Add(
-                new ItemTypeExtended { FirstName = "X2", Surname = "S2", CardNumber = "12345 ", Amount = 12.1 }
-            );
+            //// Shoudn't be added -- card number contain not only digits
+            //TestItems.Add(
+            //    new ItemTypeExtended { FirstName = "X2", Surname = "S2", CardNumber = "12345 ", Amount = 12.1 }
+            //);
 
-            // Shoudn't be added -- card number contain not only digits
-            TestItems.Add(
-                new ItemTypeExtended { FirstName = "X3", Surname = "S3", CardNumber = "12345B", Amount = 13 }
-            );
+            //// Shoudn't be added -- card number contain not only digits
+            //TestItems.Add(
+            //    new ItemTypeExtended { FirstName = "X3", Surname = "S3", CardNumber = "12345B", Amount = 13 }
+            //);
 
-            // Shoudn't be added -- card number already exist
-            TestItems.Add(
-                new ItemTypeExtended { FirstName = "X4", Surname = "S4", CardNumber = "12345", Amount = 0.03 }
-            );
+            //// Shoudn't be added -- card number already exist
+            //TestItems.Add(
+            //    new ItemTypeExtended { FirstName = "X4", Surname = "S4", CardNumber = "12345", Amount = 0.03 }
+            //);
 
-            // Should be added
-            TestItems.Add(
-                new ItemTypeExtended { FirstName = "X5", Surname = "S5", CardNumber = "123456", Amount = 0.03 }
-            );
+            //// Should be added
+            //TestItems.Add(
+            //    new ItemTypeExtended { FirstName = "X5", Surname = "S5", CardNumber = "123456", Amount = 0.03 }
+            //);
 
-            // Should be added
-            TestItems.Add(
-                new ItemTypeExtended { FirstName = "X5", Surname = "S5T1", CardNumber = "1234567", Amount = 0.02 }
-            );
+            //// Should be added
+            //TestItems.Add(
+            //    new ItemTypeExtended { FirstName = "X5", Surname = "S5T1", CardNumber = "1234567", Amount = 0.02 }
+            //);
 
-            // Should be added
-            TestItems.Add(
-                new ItemTypeExtended { FirstName = "X5T1", Surname = "S5", CardNumber = "12345678", Amount = 0.01 }
-            );
+            //// Should be added
+            //TestItems.Add(
+            //    new ItemTypeExtended { FirstName = "X5T1", Surname = "S5", CardNumber = "12345678", Amount = 0.01 }
+            //);
 
-            // Shoudn't be added -- full name already exist
-            TestItems.Add(
-                new ItemTypeExtended { FirstName = "X5T1", Surname = "S5", CardNumber = "123456789", Amount = 0 }
-            );
+            //// Shoudn't be added -- full name already exist
+            //TestItems.Add(
+            //    new ItemTypeExtended { FirstName = "X5T1", Surname = "S5", CardNumber = "123456789", Amount = 0 }
+            //);
         }
 
         private void InitCommands()

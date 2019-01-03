@@ -52,8 +52,6 @@ namespace Wpf.GridView.Core
                             { "value", data }
                         }
                     );
-
-                    result += "!";
                 }
 #pragma warning disable 168
                 catch (Exception ex)

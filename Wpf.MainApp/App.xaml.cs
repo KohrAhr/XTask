@@ -27,13 +27,13 @@ namespace Wpf.GridView
 
             Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
-            LoginWindow loginWindow = new LoginWindow();
-            if (loginWindow.ShowDialog() != true)
-            {
-                Current.Shutdown();
+            //LoginWindow loginWindow = new LoginWindow();
+            //if (loginWindow.ShowDialog() != true)
+            //{
+            //    Current.Shutdown();
 
-                return;
-            }
+            //    return;
+            //}
 
             Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
 
