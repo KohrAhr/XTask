@@ -11,7 +11,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/TripleDesEncryption",
+      "launchUrl": "api/TripleDes",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -19,7 +19,7 @@
     "EncryptionServer.NetCoreWebApp": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/TripleDesEncryption",
+      "launchUrl": "api/TripleDes",
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

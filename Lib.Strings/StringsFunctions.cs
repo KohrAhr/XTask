@@ -9,6 +9,17 @@ namespace Lib.Strings
     public static class StringsFunctions
     {
         /// <summary>
+        ///     Convert string with Hex value to array of bytes
+        ///     <para>https://stackoverflow.com/questions/321370/how-can-i-convert-a-hex-string-to-a-byte-array</para>
+        /// </summary>
+        /// <param name="hex">Hex values as string</param>
+        /// <returns>Byte array</returns>
+        public static byte[] StringToByteArray(string hex)
+        {
+            return Enumerable.Range(0, hex.Length / 2).Select(x => Convert.ToByte(hex.Substring(x * 2, 2), 16)).ToArray();
+        }
+
+        /// <summary>
         ///     Find resource by name and return value
         /// </summary>
         /// <param name="name">

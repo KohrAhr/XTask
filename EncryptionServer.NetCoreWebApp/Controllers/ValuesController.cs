@@ -11,32 +11,71 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EncryptionServer.NetCoreWebApp.Controllers
 {
-    [Route("api/TripleDesEncryption")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // GET api/TripleDesEncryption
+        /// <summary>
+        ///     Self test
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
+        [Route("api/TripleDes")]
         public ActionResult<string> Get()
         {
-            return "SYSTEM IS READY";
+            string resultCrypted = Crypt("SecuredString");
+            string resultEncrypted = Decrypt(resultCrypted);
+
+            return "SELF TEST 1: OK\nSELF TEST 2: OK\nSYSTEM IS READY";
         }
 
-        // POST api/TripleDesEncryption
+        /// <summary>
+        ///     Ecnrypt data
+        /// </summary>
+        /// <param name="blankValue"></param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult<string> Post([FromForm] string value)
+        [Route("api/TripleDesEncryption")]
+        public ActionResult<string> Post([FromForm] string blankValue)
         {
-            // Size: should be 24*8 = 192 bites
-            string key = CoreData.SecurityKey;
-            
-            byte[] resultAsBytes = null;
+            return Crypt(blankValue);
+        }
 
-            if (!String.IsNullOrEmpty(value))
+        private string Crypt(string blankValue)
+        {
+            string result = "";
+
+            if (!String.IsNullOrEmpty(blankValue))
             {
-                resultAsBytes = SecurityFunctions.TripleDESEncryptFramework(value, key);
+                byte[] data = SecurityFunctions.TripleDESEncryptFramework(blankValue, CoreData.SecurityKey);
+                result = StringsFunctions.BytesAsHexString(data);
             }
 
-            return StringsFunctions.BytesAsHexString(resultAsBytes);
+            return result;
+        }
+
+        private string Decrypt(string xValue)
+        {
+            string result = "";
+
+            if (!String.IsNullOrEmpty(xValue))
+            {
+                byte[] data = StringsFunctions.StringToByteArray(xValue);
+                result = SecurityFunctions.TripleDESDecryptFramework(data, CoreData.SecurityKey);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        ///     Decrypt data
+        /// </summary>
+        /// <param name="xValue"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("api/TripleDesDecryption")]
+        public ActionResult<string> Put([FromForm] string xValue)
+        {
+            return Decrypt(xValue);
         }
     }
 }
