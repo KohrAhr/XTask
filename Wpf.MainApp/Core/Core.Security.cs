@@ -21,9 +21,10 @@ namespace Wpf.GridView.Core
 
             if (CoreData.RemoteEncryptionServerType == CoreData.RemoteEncryptionServerTypes.rtBuildInLocalMustBeRemovedBeforeRelease)
             {
-                byte[] resultAsBytes = SecurityFunctions.TripleDESEncryptFramework(data, CoreData.EncryptionKey);
+                throw new NotImplementedException(nameof(GetEncryptedData));
+                //byte[] resultAsBytes = SecurityFunctions.TripleDESEncryptFramework(data, CoreData.EncryptionKey);
 
-                result = StringsFunctions.BytesAsHexString(resultAsBytes, " ");
+                //result = StringsFunctions.BytesAsHexString(resultAsBytes, " ");
             }
             else
             if (CoreData.RemoteEncryptionServerType == CoreData.RemoteEncryptionServerTypes.rtHttpGet)
@@ -49,7 +50,7 @@ namespace Wpf.GridView.Core
                         CoreData.RemoteEncryptionServer, 
                         new Dictionary<string, string>()
                         {
-                            { "value", data }
+                            { "blankValue", data }
                         }
                     );
                 }

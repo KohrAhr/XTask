@@ -4,10 +4,10 @@ namespace Wpf.GridView.Core
 {
     public static class CoreData
     {
-        public static string EncryptionKey
-        {
-            get; set;
-        }
+        //public static string EncryptionKey
+        //{
+        //    get; set;
+        //}
 
         public static string RemoteEncryptionServer
         {
@@ -43,7 +43,7 @@ namespace Wpf.GridView.Core
         public static void Init()
         {
 
-            EncryptionKey = ConfigurationManager.AppSettings["SecurityKey"].ToString();
+            //EncryptionKey = ConfigurationManager.AppSettings["SecurityKey"].ToString();
             RemoteEncryptionServer = ConfigurationManager.AppSettings["RemoteEncryptionServer"].ToString();
             RemoteEncryptionServerType = RemoteEncryptionServerTypes.rtHttpPost;
         }

@@ -13,11 +13,11 @@ namespace Wpf.GridView.ViewModels
 {
     public partial class MainWindowVM : PropertyChangedNotification
     {
-        public string SecretKey
-        {
-            get { return CoreData.EncryptionKey; }
-            set { }
-        }
+        //public string SecretKey
+        //{
+        //    get { return CoreData.EncryptionKey; }
+        //    set { }
+        //}
 
         public ItemsType TestItems
         {
