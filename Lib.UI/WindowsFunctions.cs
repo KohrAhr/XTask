@@ -16,14 +16,44 @@ namespace Lib.UI
         public const double CONST_OPACITY_NORMAL = 1;
 
         /// <summary>
+        ///     Find any open window of such type and bring to front.
+        ///     <para>Otherwise create new window.</para>
+        /// </summary>
+        /// <typeparam name="T">
+        ///     Window
+        /// </typeparam>
+        public static void ProceedWindow<T>(bool standAlone = false) where T : Window
+        {
+            Window window = WindowsUI.FindWindow<T>();
+
+            if (window == null)
+            {
+                WindowsUI.ShowWindow<T>(standAlone);
+            }
+            else
+            {
+                window.BringIntoView();
+                if (window.Focusable)
+                {
+                    window.Focus();
+                }
+            }
+        }
+
+        /// <summary>
         ///     Создать и показать окно не модально
         /// </summary>
         /// <typeparam name="T">
         ///     Тип окна
         /// </typeparam>
-        public static void ShowWindow<T>() where T : Window
+        public static void ShowWindow<T>(bool standAlone = false) where T : Window
         {
-            Window parentWindow = GetTopWindow();
+            Window parentWindow = null;
+
+            if (!standAlone)
+            {
+                parentWindow = GetTopWindow();
+            }
 
             T dlg = (T)Activator.CreateInstance(typeof(T), new object[] { });
             dlg.Owner = parentWindow; 
