@@ -34,7 +34,23 @@ namespace Lib.System
                 {
                     if (key != null)
                     {
-                        GetRegKeyValueObject(key, valueName, valueKind);
+                        RegistryValueKind registryValueKind = key.GetValueKind(valueName);
+
+                        if (registryValueKind == valueKind)
+                        {
+                            WpfSystem.Object o = key.GetValue(valueName);
+                            if (o != null)
+                            {
+                                if (o.GetType().BaseType == typeof(WpfSystem.Array))
+                                {
+                                    result = WpfSystem.String.Join(WpfSystem.Environment.NewLine, (string[])o);
+                                }
+                                else
+                                {
+                                    result = o.ToString();
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -70,9 +86,11 @@ namespace Lib.System
             }
             catch (WpfSystem.NullReferenceException)
             {
+                result = null;
             }
             catch (SecurityException)
             {
+                result = null;
             }
 
             return result;

@@ -330,7 +330,7 @@ namespace Lib.System
 		{
 			try
 			{
-				ThreadLoop();
+				ThreadLoopErrorSafe();
 			}
 			catch (Exception e)
 			{
@@ -339,44 +339,101 @@ namespace Lib.System
 			_thread = null;
 		}
 
-		private void ThreadLoop()
-		{
-			IntPtr registryKey;
-			int result = RegOpenKeyEx(_registryHive, _registrySubName, 0, STANDARD_RIGHTS_READ | KEY_QUERY_VALUE | KEY_NOTIFY,
-			                          out registryKey);
-			if (result != 0)
-				throw new Win32Exception(result);
+        private void ThreadLoop()
+        {
+            bool restart;
+            do
+            {
+                restart = false;
 
-			try
-			{
-				AutoResetEvent _eventNotify = new AutoResetEvent(false);
-				WaitHandle[] waitHandles = new WaitHandle[] {_eventNotify, _eventTerminate};
-				while (!_eventTerminate.WaitOne(0, true))
-				{
-					result = RegNotifyChangeKeyValue(registryKey, true, _regFilter, _eventNotify.Handle, true);
-					if (result != 0)
-						throw new Win32Exception(result);
+                int result = RegOpenKeyEx(_registryHive, _registrySubName, 0, STANDARD_RIGHTS_READ | KEY_QUERY_VALUE | KEY_NOTIFY,
+                                          out IntPtr registryKey);
+                if (result != 0)
+                    throw new Win32Exception(result);
 
-					if (WaitHandle.WaitAny(waitHandles) == 0)
-					{
-						OnRegChanged();
-					}
-				}
-			}
-			finally
-			{
-				if (registryKey != IntPtr.Zero)
-				{
-					RegCloseKey(registryKey);
-				}
-			}
-		}
-	}
-	
-	/// <summary>
-	/// Filter for notifications reported by <see cref="RegistryMonitor"/>.
-	/// </summary>
-	[Flags]
+                try
+                {
+                    AutoResetEvent _eventNotify = new AutoResetEvent(false);
+                    WaitHandle[] waitHandles = new WaitHandle[] { _eventNotify, _eventTerminate };
+                    while (!_eventTerminate.WaitOne(0, true))
+                    {
+                        result = RegNotifyChangeKeyValue(registryKey, true, _regFilter, _eventNotify.Handle, true);
+                        if (result != 0)
+                        {
+                            restart = true;
+                            Thread.Sleep(50);
+                            //                        throw new Win32Exception(result);
+                            break;
+                        }
+
+                        if (WaitHandle.WaitAny(waitHandles) == 0)
+                        {
+                            Thread.Sleep(50);
+                            OnRegChanged();
+                        }
+                    }
+                }
+                finally
+                {
+                    if (registryKey != IntPtr.Zero)
+                    {
+                        RegCloseKey(registryKey);
+                    }
+                }
+            } while (restart);
+            restart = false;
+        }
+
+        private void ThreadLoopErrorSafe()
+        {
+            bool restart;
+            do
+            {
+                restart = false;
+
+                int result = RegOpenKeyEx(_registryHive, _registrySubName, 0, STANDARD_RIGHTS_READ | KEY_QUERY_VALUE | KEY_NOTIFY,
+                                          out IntPtr registryKey);
+                if (result != 0)
+                    throw new Win32Exception(result);
+
+                try
+                {
+                    AutoResetEvent _eventNotify = new AutoResetEvent(false);
+                    WaitHandle[] waitHandles = new WaitHandle[] { _eventNotify, _eventTerminate };
+                    while (!_eventTerminate.WaitOne(0, true))
+                    {
+                        result = RegNotifyChangeKeyValue(registryKey, true, _regFilter, _eventNotify.Handle, true);
+                        if (result != 0)
+                        {
+                            restart = true;
+                            Thread.Sleep(50);
+                            //                        throw new Win32Exception(result);
+                            break;
+                        }
+
+                        if (WaitHandle.WaitAny(waitHandles) == 0)
+                        {
+                            Thread.Sleep(50);
+                            OnRegChanged();
+                        }
+                    }
+                }
+                finally
+                {
+                    if (registryKey != IntPtr.Zero)
+                    {
+                        RegCloseKey(registryKey);
+                    }
+                }
+            } while (restart);
+            restart = false;
+        }
+    }
+
+    /// <summary>
+    /// Filter for notifications reported by <see cref="RegistryMonitor"/>.
+    /// </summary>
+    [Flags]
 	public enum RegChangeNotifyFilter
 	{
 		/// <summary>Notify the caller if a subkey is added or deleted.</summary>
