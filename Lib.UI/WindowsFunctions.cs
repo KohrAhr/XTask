@@ -16,7 +16,7 @@ namespace Lib.UI
         public const double CONST_OPACITY_NORMAL = 1;
 
         /// <summary>
-        ///     Find any open window of such type and bring to front.
+        ///     Find any open window of such type and bring to front and also restore windows state.
         ///     <para>Otherwise create new window.</para>
         /// </summary>
         /// <typeparam name="T">
@@ -36,6 +36,10 @@ namespace Lib.UI
                 if (window.Focusable)
                 {
                     window.Focus();
+                }
+                if (window.WindowState == WindowState.Minimized)
+                {
+                    window.WindowState = WindowState.Normal;
                 }
             }
         }
