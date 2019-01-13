@@ -34,23 +34,7 @@ namespace Lib.System
                 {
                     if (key != null)
                     {
-                        RegistryValueKind registryValueKind = key.GetValueKind(valueName);
-
-                        if (registryValueKind == valueKind)
-                        {
-                            WpfSystem.Object o = key.GetValue(valueName);
-                            if (o != null)
-                            {
-                                if (o.GetType().BaseType == typeof(WpfSystem.Array))
-                                {
-                                    result = WpfSystem.String.Join(WpfSystem.Environment.NewLine, (string[])o);
-                                }
-                                else
-                                {
-                                    result = o.ToString();
-                                }
-                            }
-                        }
+                        GetRegKeyValueObject(key, valueName, valueKind);
                     }
                 }
             }
@@ -58,6 +42,39 @@ namespace Lib.System
             {
                 result = null;
             }
+            return result;
+        }
+
+        public string GetRegKeyValueObject(RegistryKey key, string valueName, RegistryValueKind valueKind)
+        {
+            string result = "";
+            RegistryValueKind registryValueKind = key.GetValueKind(valueName);
+
+            try
+            {
+                if (registryValueKind == valueKind)
+                {
+                    WpfSystem.Object o = key.GetValue(valueName);
+                    if (o != null)
+                    {
+                        if (o.GetType().BaseType == typeof(WpfSystem.Array))
+                        {
+                            result = WpfSystem.String.Join(WpfSystem.Environment.NewLine, (string[])o);
+                        }
+                        else
+                        {
+                            result = o.ToString();
+                        }
+                    }
+                }
+            }
+            catch (WpfSystem.NullReferenceException)
+            {
+            }
+            catch (SecurityException)
+            {
+            }
+
             return result;
         }
 
