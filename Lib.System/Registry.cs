@@ -96,6 +96,34 @@ namespace Lib.System
             return result;
         }
 
+        public long GetRegKeyValueObjectAsInt(RegistryKey key, string valueName, RegistryValueKind valueKind)
+        {
+            long result = 0;
+            RegistryValueKind registryValueKind = key.GetValueKind(valueName);
+
+            try
+            {
+                if (registryValueKind == valueKind)
+                {
+                    WpfSystem.Object o = key.GetValue(valueName);
+                    if (o != null)
+                    {
+                        result = (long)o;
+                    }
+                }
+            }
+            catch (WpfSystem.NullReferenceException)
+            {
+                result = 0;
+            }
+            catch (SecurityException)
+            {
+                result = 0;
+            }
+
+            return result;
+        }
+
         public bool CanSetRegKeyValue(string path, string valueName, RegistryKey registry = null)
         {
             bool result = true;
