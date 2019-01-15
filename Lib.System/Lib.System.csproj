@@ -37,6 +37,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,8 +51,15 @@
     <Compile Include="Processes.cs" />
     <Compile Include="Registry.cs" />
     <Compile Include="RegistryMonitor.cs" />
+    <Compile Include="Services.cs" />
     <Compile Include="UserFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lib.Strings\Lib.Strings.csproj">
+      <Project>{AEC79C91-7BB6-4F43-A689-319A01CA8BBF}</Project>
+      <Name>Lib.Strings</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
