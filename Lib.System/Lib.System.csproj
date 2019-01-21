@@ -52,6 +52,7 @@
     <Compile Include="Registry.cs" />
     <Compile Include="RegistryMonitor.cs" />
     <Compile Include="Services.cs" />
+    <Compile Include="Sessions.cs" />
     <Compile Include="UserFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
