@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="AppFunctions.cs" />
     <Compile Include="CommandLine.cs" />
+    <Compile Include="MemoryFile.cs" />
     <Compile Include="Processes.cs" />
     <Compile Include="Registry.cs" />
     <Compile Include="RegistryMonitor.cs" />
