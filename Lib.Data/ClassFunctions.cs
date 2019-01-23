@@ -54,7 +54,7 @@ namespace Lib.Data
                     valueAsString = valueAsString.ToUpper();
                 }
 
-                result = valueAsString.Contains(text);
+                result = valueAsString.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0;
 
                 // "If" for optimization
                 if (result)
