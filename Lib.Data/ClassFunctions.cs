@@ -54,12 +54,15 @@ namespace Lib.Data
                     valueAsString = valueAsString.ToUpper();
                 }
 
-                result = valueAsString.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0;
-
-                // "If" for optimization
-                if (result)
+                if (!String.IsNullOrEmpty(text))
                 {
-                    break;
+                    result = valueAsString.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0;
+
+                    // "If" for optimization
+                    if (result)
+                    {
+                        break;
+                    }
                 }
             }
 
