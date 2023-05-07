@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using Lib.MVVM;
 using Wpf.GridView.Models;
@@ -9,6 +10,8 @@ namespace Wpf.GridView.ViewModels
 {
     public partial class NewItemVM : BaseVM
     {
+        public ICommand CustomCommand { get; set; }
+
         public NewItemModel Model { get; set; }
 
         /// <summary>
@@ -25,11 +28,19 @@ namespace Wpf.GridView.ViewModels
         {
             Model = new NewItemModel();
             Model.NewItem = new Types.ItemType();
+
         }
 
         private void InitCommands()
         {
             OkCommand = new RelayCommand(OkCommandProc);
+
+            CustomCommand = new RelayCommand(CustomCommandProc);
+        }
+
+        private void CustomCommandProc(object obj)
+        {
+            MessageBox.Show("Command 1!", "Information");
         }
 
         private void OkCommandProc(object o)

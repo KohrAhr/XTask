@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lib.MVVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,6 +39,7 @@ namespace Wpf.GridView.Forms
             );
 
             ucTop.NewButton1Title = "TEST1";
+            ucTop.NewButton1Command = new RelayCommand(NewButton1CommandProc);
             ucTop.NewButton2.Content = "TEST2";
 
             DataContext = new NewItemVM();
@@ -50,6 +52,11 @@ namespace Wpf.GridView.Forms
             //        ItemFormActionBar.AvailableButtons.abCancel
             //    }
             //);
+        }
+
+        private void NewButton1CommandProc(object obj)
+        {
+            ((NewItemVM)DataContext).CustomCommand.Execute(null);
         }
 
         private void ucTop_UserControlNewButtonClicked(object sender, EventArgs e)

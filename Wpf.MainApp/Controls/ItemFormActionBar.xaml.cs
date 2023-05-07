@@ -30,13 +30,6 @@ namespace Wpf.GridView.Controls
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-            //PropertyChangedEventHandler handler = this.PropertyChanged;
-
-            //if (handler != null)
-            //{
-            //    handler(this, new PropertyChangedEventArgs(propertyName));
-            //}
         }
 
         // Setters for the new button properties here
@@ -51,8 +44,23 @@ namespace Wpf.GridView.Controls
             }
         }
 
+        public RelayCommand NewButton1Command
+        {
+            get { return (RelayCommand)GetValue(NewButton1CommandProperty); }
+            set
+            {
+                SetValue(NewButton1CommandProperty, value);
+                OnPropertyChanged(nameof(NewButton1CommandProperty));
+            }
+        }
+
         public static readonly DependencyProperty NewButton1TitleProperty = DependencyProperty.Register("NewButton1Title", typeof(string), typeof(ItemFormActionBar));
 
+        public static readonly DependencyProperty NewButton1CommandProperty = DependencyProperty.Register("NewButton1Command", typeof(RelayCommand), typeof(ItemFormActionBar));
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public enum AvailableButtons
         {
             abNew = 0,

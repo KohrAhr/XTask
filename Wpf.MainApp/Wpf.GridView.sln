@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2046
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.GridView", "Wpf.GridView.csproj", "{42CAB221-7ADA-4C83-BF72-CE9FA3DB7DC3}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -23,13 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.UI", "..\Lib.UI\Lib.UI.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.MVVM", "..\Lib.MVVM\Lib.MVVM.csproj", "{100ED6AE-4C7C-46F4-A03D-0662DB106966}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Lib.Strings", "..\Tests.Lib.Strings\Tests.Lib.Strings.csproj", "{638078C7-FB55-44F2-A204-D830265AEA0C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EncryptionServer.NetCoreWebApp", "..\EncryptionServer.NetCoreWebApp\EncryptionServer.NetCoreWebApp.csproj", "{FEFFD88B-E9C6-4E95-8CC1-2A55268C972C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Lib.Security", "..\Tests.Lib.Security\Tests.Lib.Security.csproj", "{A0918182-C5E4-4CA4-8765-0DFCA2DD572F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Lib.System", "..\Tests.Lib.System\Tests.Lib.System.csproj", "{F334AE7C-311B-40A1-A3B1-72434985F14A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Data", "..\Lib.Data\Lib.Data.csproj", "{277E0BBC-A424-48BF-8FC1-7310252299D8}"
 EndProject
@@ -63,22 +57,10 @@ Global
 		{100ED6AE-4C7C-46F4-A03D-0662DB106966}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{100ED6AE-4C7C-46F4-A03D-0662DB106966}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{100ED6AE-4C7C-46F4-A03D-0662DB106966}.Release|Any CPU.Build.0 = Release|Any CPU
-		{638078C7-FB55-44F2-A204-D830265AEA0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{638078C7-FB55-44F2-A204-D830265AEA0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{638078C7-FB55-44F2-A204-D830265AEA0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{638078C7-FB55-44F2-A204-D830265AEA0C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FEFFD88B-E9C6-4E95-8CC1-2A55268C972C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FEFFD88B-E9C6-4E95-8CC1-2A55268C972C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEFFD88B-E9C6-4E95-8CC1-2A55268C972C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEFFD88B-E9C6-4E95-8CC1-2A55268C972C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A0918182-C5E4-4CA4-8765-0DFCA2DD572F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0918182-C5E4-4CA4-8765-0DFCA2DD572F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A0918182-C5E4-4CA4-8765-0DFCA2DD572F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A0918182-C5E4-4CA4-8765-0DFCA2DD572F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F334AE7C-311B-40A1-A3B1-72434985F14A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F334AE7C-311B-40A1-A3B1-72434985F14A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F334AE7C-311B-40A1-A3B1-72434985F14A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F334AE7C-311B-40A1-A3B1-72434985F14A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{277E0BBC-A424-48BF-8FC1-7310252299D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{277E0BBC-A424-48BF-8FC1-7310252299D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{277E0BBC-A424-48BF-8FC1-7310252299D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
