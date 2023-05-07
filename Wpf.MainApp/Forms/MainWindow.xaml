@@ -1,4 +1,5 @@
 ﻿<Window x:Class="Wpf.GridView.Forms.MainWindow"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -61,7 +62,7 @@
         <TextBox x:Name="txtHighlight" Margin="170,76,115,0" Style="{StaticResource ResourceKey=TextBoxRegular}"/>
         <Button x:Name="btnResetHighlight" IsEnabled="{Binding Path=Text.Length, ElementName=txtHighlight}" Content="{StaticResource ResourceKey=resResetSearch}" Margin="0,76,10,0" Style="{StaticResource ResourceKey=RegularButton}" HorizontalAlignment="Right" Click="btnResetHighlight_Click" />
 
-        <DataGrid x:Name="dgMain" f:DataGridTextSearch.SearchValue="{Binding ElementName=txtHighlight, Path=Text, UpdateSourceTrigger=PropertyChanged}" Margin="10,104,10,10" Style="{StaticResource ResourceKey=DataGridMain}" ItemsSource="{Binding Path=TestItems.Items}">
+        <DataGrid x:Name="dgMain" RowHeight="{x:Static sys:Double.NaN}"  f:DataGridTextSearch.SearchValue="{Binding ElementName=txtHighlight, Path=Text, UpdateSourceTrigger=PropertyChanged}" Margin="14,103,6,11" Style="{StaticResource ResourceKey=DataGridMain}" ItemsSource="{Binding Path=TestItems.Items}">
             <DataGrid.Resources>
                 <f:SearchValueConverter x:Key="SearchValueConverter" />
                 <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource ResourceKey=DataGridCellTooltip}">

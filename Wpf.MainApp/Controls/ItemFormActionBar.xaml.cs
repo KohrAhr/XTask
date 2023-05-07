@@ -15,19 +15,51 @@ using System.Windows.Shapes;
 using Lib.MVVM;
 using Wpf.GridView.Functions;
 using Lib.UI;
+using System.ComponentModel;
+using Wpf.GridView.Types;
 
 namespace Wpf.GridView.Controls
 {
     /// <summary>
     /// Interaction logic for ItemFormActionBar.xaml
     /// </summary>
-    public partial class ItemFormActionBar : UserControl
+    public partial class ItemFormActionBar : UserControl, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+            //PropertyChangedEventHandler handler = this.PropertyChanged;
+
+            //if (handler != null)
+            //{
+            //    handler(this, new PropertyChangedEventArgs(propertyName));
+            //}
+        }
+
+        // Setters for the new button properties here
+
+        public string NewButton1Title
+        {
+            get { return (string)GetValue(NewButton1TitleProperty); }
+            set 
+            { 
+                SetValue(NewButton1TitleProperty, value);
+                OnPropertyChanged(nameof(NewButton1Title));
+            }
+        }
+
+        public static readonly DependencyProperty NewButton1TitleProperty = DependencyProperty.Register("NewButton1Title", typeof(string), typeof(ItemFormActionBar));
+
         public enum AvailableButtons
         {
             abNew = 0,
             abUpdate = 1,
-            abCancel = 2
+            abCancel = 2,
+            abAddon1 = 3,
+            abAddon2 = 4,
         };
 
         #region Events definition

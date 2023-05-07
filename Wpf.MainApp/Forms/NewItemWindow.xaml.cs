@@ -18,7 +18,7 @@ using Wpf.GridView.ViewModels;
 
 namespace Wpf.GridView.Forms
 {
-    /// <summary>
+    /// <summary>   
     /// Interaction logic for NewItemWindow.xaml
     /// </summary>
     public partial class NewItemWindow : BaseWindow
@@ -31,9 +31,14 @@ namespace Wpf.GridView.Forms
                 new ItemFormActionBar.AvailableButtons[]
                 {
                     ItemFormActionBar.AvailableButtons.abNew,
-                    ItemFormActionBar.AvailableButtons.abCancel
+                    ItemFormActionBar.AvailableButtons.abCancel,
+                    ItemFormActionBar.AvailableButtons.abAddon1,
+                    ItemFormActionBar.AvailableButtons.abAddon2
                 }
             );
+
+            ucTop.NewButton1Title = "TEST1";
+            ucTop.NewButton2.Content = "TEST2";
 
             DataContext = new NewItemVM();
             ((NewItemVM)DataContext).CloseAsOK += CloseWindowAsOK;
