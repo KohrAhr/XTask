@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Configuration;
+using System.Linq;
 using System.Windows.Input;
 using Lib.MVVM;
 using Wpf.GridView.Models;
@@ -35,17 +39,26 @@ namespace Wpf.GridView.ViewModels
             OkCommand = new RelayCommand(OkCommandProc);
         }
 
+
         private void OkCommandProc(object o)
         {
-            // Validate data (all data should be entered)
-            if (!Model.CurrentItem.IsEntered)
+            string result = Model.CurrentItem.ValidateProperty("FirstName");
+            result += Model.CurrentItem.ValidateProperty("SpecialCode");
+            if (String.IsNullOrEmpty(result))
             {
-                new ItemFunctions().ShowDataValidationWarning();
-                return;
-            }
+                CloseAsOkEvent();
+            };
 
-            // Raise Close event
-            CloseAsOkEvent();
+
+            //// Validate data (all data should be entered)
+            //if (!Model.CurrentItem.IsEntered)
+            //{
+            //    new ItemFunctions().ShowDataValidationWarning();
+            //    return;
+            //}
+
+            //// Raise Close event
+            //CloseAsOkEvent();
         }
     }
 }

@@ -11,6 +11,7 @@
         Height="{StaticResource ResourceKey=stlItemWindowHeight}" Width="{StaticResource ResourceKey=stlItemWindowWidth}" 
         WindowStartupLocation="CenterOwner" 
         FocusManager.FocusedElement="{Binding ElementName=txtFirstName}" ResizeMode="NoResize" ShowInTaskbar="False" >
+
     <Grid>
         <c:ItemFormActionBar x:Name="ucTop" VerticalAlignment="Top" UserControlUpdateButtonClicked="ucTop_UserControlUpdateButtonClicked"/>
 
@@ -18,10 +19,26 @@
         <Label Content="{StaticResource ResourceKey=resSurname}" Style="{StaticResource ResourceKey=LabelRegular}" HorizontalAlignment="Left" Margin="10,73,0,0" />
         <Label Content="{StaticResource ResourceKey=resCardNumber}" Style="{StaticResource ResourceKey=LabelRegular}" HorizontalAlignment="Left" Margin="10,104,0,0" />
         <Label Content="{StaticResource ResourceKey=resAmount}" Style="{StaticResource ResourceKey=LabelRegular}" HorizontalAlignment="Left" Margin="10,135,0,0" />
-        <TextBox x:Name="txtFirstName" Margin="165,45,10,0" Style="{StaticResource ResourceKey=TextBoxRegular}" Text="{Binding Path=Model.CurrentItem.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox Margin="165,77,10,0" Style="{StaticResource ResourceKey=TextBoxRegular}" Text="{Binding Path=Model.CurrentItem.Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox Margin="165,108,10,0" Style="{StaticResource ResourceKey=TextBoxRegular}" Text="{Binding Path=Model.CurrentItem.CardNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBox HorizontalAlignment="Left" Margin="165,138,0,0" Style="{StaticResource ResourceKey=TextBoxRegular}" Text="{Binding Path=Model.CurrentItem.Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="70"/>
+        <TextBox MaxLength="100" x:Name="txtFirstName" Margin="165,45,295,0" Style="{StaticResource ResourceKey=TextBoxRegular}"
+                 ToolTip="{Binding (Validation.Errors)[0].ErrorContent, ElementName=txtFirstName}"
+            Text="{Binding Path=Model.CurrentItem.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True, ValidatesOnDataErrors=True}" 
+        />
+        <TextBlock 
+               Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=txtFirstName}" 
+               Foreground="Red" HorizontalAlignment="Left" Margin="360,44,0,100" Width="417" />
 
+        <TextBox Margin="165,77,10,0" Style="{StaticResource ResourceKey=TextBoxRegular}" Text="{Binding Path=Model.CurrentItem.Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+        <TextBox Margin="165,108,10,0" Style="{StaticResource ResourceKey=TextBoxRegular}" 
+            Name="txtCreditCardNumber"
+                 MaxLength="20"
+            ToolTip="{Binding (Validation.Errors)[0].ErrorContent, ElementName=txtCreditCardNumber}"
+            Text="{Binding Path=Model.CurrentItem.CardNumber, Mode=TwoWay, 
+            UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True}"
+                 
+                 />
+        <TextBox Name="txtSC" HorizontalAlignment="Left" Margin="165,138,0,0" Style="{StaticResource ResourceKey=TextBoxRegular}" Text="{Binding Path=Model.CurrentItem.SpecialCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True, ValidatesOnDataErrors=True}" Width="70"/>
+        <TextBlock
+               Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=txtSC}" 
+               Foreground="Red" HorizontalAlignment="Left" Margin="240,139,0,10" Width="417" />
     </Grid>
 </b:BaseWindow>

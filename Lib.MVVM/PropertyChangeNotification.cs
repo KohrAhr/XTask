@@ -19,6 +19,7 @@ namespace Lib.MVVM
 
         #endregion
 
+
         #region Protected
         /// <summary>
         /// Sets the value of a property.
@@ -118,6 +119,15 @@ namespace Lib.MVVM
             return error;
         }
 
+        /// <summary>
+        ///     To make it available for validation on demand
+        /// </summary>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
+        public virtual string ValidateProperty(string propertyName)
+        {
+            return OnValidate(propertyName);
+        }
         #endregion
 
         #region Change Notification

@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-    <system:Double x:Key="stlItemWindowWidth">467</system:Double>
+    <system:Double x:Key="stlItemWindowWidth">667</system:Double>
     <system:Double x:Key="stlItemWindowHeight">210</system:Double>
 
     <Style TargetType="TextBlock">
@@ -60,6 +60,11 @@
 
     <Style x:Key="TextBoxRegular" TargetType="TextBox" BasedOn="{StaticResource ResourceKey=TextBoxBase}">
         <Setter Property="TextWrapping" Value="NoWrap"/>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="PasswordBoxRegular" TargetType="PasswordBox">
